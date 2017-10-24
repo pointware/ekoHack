@@ -4,10 +4,9 @@ from moviepy.editor import *
 from moviepy.video.tools.segmenting import findObjects
 
 # WE CREATE THE TEXT THAT IS GOING TO MOVE, WE CENTER IT.
-
+print(TextClip.list('font'))
 screensize = (720,460)
-mytext = u'한글테스트'.encode('utf-8')
-txtClip = TextClip(mytext,color='white', font="NanumGothic",
+txtClip = TextClip('한글테스트',color='white', font='NanumGothic',
                    kerning = 5, fontsize=100)
 cvc = CompositeVideoClip( [txtClip.set_pos('center')],
                         size=screensize)
