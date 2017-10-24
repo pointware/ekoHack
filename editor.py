@@ -1,64 +1,91 @@
+# -*- coding: utf-8 -*-
+# 1. black display and text center and bumb
+# 2. video and fade in and text center 3 seconds
+# 3. fade in and fade out and 3 seconds
+# 4. black display and text
+# 5. image 4 0.8
+# 6. gmarket
+
 import numpy as np
+import time
 from moviepy.editor import *
-from moviepy.video.tools.segmenting import findObjects
-
-# WE CREATE THE TEXT THAT IS GOING TO MOVE, WE CENTER IT.
-
-screensize = (720,460)
-txtClip = TextClip('Cool effect',color='white', font="Amiri-Bold",
-                   kerning = 5, fontsize=100)
-cvc = CompositeVideoClip( [txtClip.set_pos('center')],
-                        size=screensize)
-
-# THE NEXT FOUR FUNCTIONS DEFINE FOUR WAYS OF MOVING THE LETTERS
 
 
-# helper function
-rotMatrix = lambda a: np.array( [[np.cos(a),np.sin(a)], 
-                                 [-np.sin(a),np.cos(a)]] )
+#print(TextClip.list('font'))
+# 1. black display and text center and bumb
+width = 1920 / 4
+height = 1080 / 4
+step1_text = u'노동계와 정부 간 국정파'
+step1_duration = 3;
 
-def vortex(screenpos,i,nletters):
-    d = lambda t : 1.0/(0.3+t**8) #damping
-    a = i*np.pi/ nletters # angle of the movement
-    v = rotMatrix(a).dot([-1,0])
-    if i%2 : v[1] = -v[1]
-    return lambda t: screenpos+400*d(t)*rotMatrix(0.5*d(t)*a).dot(v)
-    
-def cascade(screenpos,i,nletters):
-    v = np.array([0,-1])
-    d = lambda t : 1 if t<0 else abs(np.sinc(t)/(1+t**4))
-    return lambda t: screenpos+v*400*d(t-0.15*i)
+step2_video_name = 'gmarket.mp4'
+step2_text = u'ttttttttt'
 
-def arrive(screenpos,i,nletters):
-    v = np.array([-1,0])
-    d = lambda t : max(0, 3-3*t)
-    return lambda t: screenpos-400*v*d(t-0.2*i)
-    
-def vortexout(screenpos,i,nletters):
-    d = lambda t : max(0,t) #damping
-    a = i*np.pi/ nletters # angle of the movement
-    v = rotMatrix(a).dot([-1,0])
-    if i%2 : v[1] = -v[1]
-    return lambda t: screenpos+400*d(t-0.1*i)*rotMatrix(-0.2*d(t)*a).dot(v)
+step3_video_name = 'auction.mp4'
+step3_text = u'auction auction'
+
+step4_text = u'endendendend'
+
+logo_name = 'logo.mp4'
+
+#set black
+blackimage = np.zeros([height, width, 3], dtype=np.uint8)
+blackimage.fill(0)
+
+
+step1_text_video = TextClip(step1_text.encode('utf-8'), fontsize=20, color='white', font='NanumBarunGothic-UltraLight')
+step1_text_video = step1_text_video.set_duration(step1_duration)
+step1_text_video = step1_text_video.set_pos("center")
+
+step1 = ImageClip(blackimage).set_duration(step1_duration)
+
+video = CompositeVideoClip([step1,step1_text_video])
+
+#effect
+video = video.fadein(1)
 
 
 
-# WE USE THE PLUGIN findObjects TO LOCATE AND SEPARATE EACH LETTER
 
-letters = findObjects(cvc) # a list of ImageClips
+step2_video = VideoFileClip(step2_video_name).subclip(0,5)
+step2_video = step2_video.resize(height=height)
+
+step2_text_video = TextClip(step2_text.encode('utf-8'), fontsize=20, color='white', font='NanumBarunGothic-UltraLight')\
+    .set_duration(step2_video.duration).set_position(("center","top"))
+
+step2_video = CompositeVideoClip([step2_video, step2_text_video]).fadein(1).fadeout(1)
 
 
-# WE ANIMATE THE LETTERS
 
-def moveLetters(letters, funcpos):
-    return [ letter.set_pos(funcpos(letter.screenpos,i,len(letters)))
-              for i,letter in enumerate(letters)]
+step3_video = VideoFileClip(step3_video_name).subclip(0,5)
+step3_video = step3_video.resize(height=height)
 
-clips = [ CompositeVideoClip( moveLetters(letters,funcpos),
-                              size = screensize).subclip(0,5)
-          for funcpos in [vortex, cascade, arrive, vortexout] ]
+step3_text_video = TextClip(step3_text.encode('utf-8'), fontsize=20, color='white', font='NanumBarunGothic-UltraLight')\
+    .set_duration(step2_video.duration).set_position(("center","bottom"))
 
-# WE CONCATENATE EVERYTHING AND WRITE TO A FILE
+step3_video = CompositeVideoClip([step3_video, step3_text_video]).fadein(1).fadeout(1)
 
-final_clip = concatenate_videoclips(clips)
-final_clip.write_videofile('./TextEffects.mp4',fps=30,codec='mpeg4')
+
+step4_video = ImageClip(blackimage).set_duration(3)
+
+step4_text_video = TextClip(step4_text.encode('utf-8'), fontsize=20, color='white', font='NanumBarunGothic-UltraLight')\
+    .set_duration(3).set_position("center")
+
+step4_video = CompositeVideoClip([step4_video, step4_text_video]).fadein(1).fadeout(1)
+
+step5_video = VideoFileClip(logo_name).resize((width,height))
+
+video = concatenate_videoclips([video, step2_video, step3_video, step4_video, step5_video], method='compose')
+
+
+
+datatime = time.strftime("%H%M%S.mp4", time.localtime())
+video.write_videofile(datatime, fps=30)
+
+
+
+# def textImpression(text, duration, fontsize, fps=30):
+#     return [TextClip(step4_text.encode('utf-8'), fontsize=100-fontsize-x*(), color='white', font='NanumBarunGothic-UltraLight') \
+#         .set_duration(0.1).set_position("center") for x in range(0,fps)]
+
+#step1_text_video.set_position(("center"))
