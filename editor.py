@@ -7,7 +7,7 @@ from moviepy.video.tools.segmenting import findObjects
 
 screensize = (720,460)
 mytext = u'한글테스트'.encode('euc-kr')
-txtClip = TextClip(mytext,color='white', font="Amiri-Bold",
+txtClip = TextClip(mytext,color='white', font="NanumGothic",
                    kerning = 5, fontsize=100)
 cvc = CompositeVideoClip( [txtClip.set_pos('center')],
                         size=screensize)
