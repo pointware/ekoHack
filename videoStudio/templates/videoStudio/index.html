@@ -1,21 +1,44 @@
 {% extends 'videoStudio/base.html' %}
 
 {% block content %}
+    <style>
+        input.transparent-input{
+           background-color:rgba(0,0,0,0) !important;
+        }
+    </style>
+
     <!-- Page Header -->
     <header class="masthead" style="background-image: url('media/videoMaterial/img/home-bg.jpg')">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h1>e-Video Studio</h1>
-                    <span class="subheading">쉽게 만들고, 배포하세요</span>
-                </div>
+                <div class="col-lg-10 col-md-12 mx-auto">
+                    <div class="site-heading">
+                        <h1>e-Video Studio</h1>
+                        <span class="subheading">쉽게 만들고, 배포하세요</span>
+                    </div>
+
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control transparent-input col-lg-15" id="usr" placeholder="ID">
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="form-group">
+                                <input type="password" class="form-control transparent-input col-lg-15" id="pwd" placeholder="Password">
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center">
+                                <div class="form-group">
+                                    <button type="submit" class="form-control"><span><a href="items">login</a></span></button>
+                                </div>
+                            </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="container">
-        <button class="start_make_ad_button"><span><a href="items"> 광고 제작 Start </a> </span> </button>
-    </div>
 {% endblock %}

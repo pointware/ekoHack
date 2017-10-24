@@ -1,7 +1,32 @@
 {% extends 'videoStudio/base.html' %}
 
 {% block content %}
+    <header class="masthead" style="background-image: url('media/videoMaterial/img/home-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-12 mx-auto">
+                        <div class="site-heading">
+                            <h1>Item 고르기</h1>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </header>
     <div class="container">
-        <button><span><a href="videoEdit"> 영상 편집 </a></span></button>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <ul class="w3-ul hoverable">
+                    {% for item in items %}
+                        <li>
+                            <div><a href="videoedit">상품명 : {{item.name}}</a></div>
+                            <p>분류 : {{item.category}}</p>
+                            <p>상품번호 : {{item.gd_no}}</p>
+                            <p>가격 : {{item.amount}}</p>
+                            <p>상품페이지 url : {{item.vip_url}}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </div>
 {% endblock %}

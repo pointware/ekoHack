@@ -1,6 +1,6 @@
 from django import forms
 
 class AdMaterialForm(forms.Form):
-    adMaterialfile = forms.FileField(
+     material = forms.FileField(
         label='Select a file'
     )

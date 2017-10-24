@@ -3,10 +3,10 @@
 {% block content %}
 
     <!-- List of uploaded documents -->
-    {% if videoMaterial %}
-    <ul>
-        <li><a href="">{{ videoMaterial.count }}</a></li>
-    </ul>
+    {% if materials %}
+        <ul>
+            <li>비디오 있음</li>
+        </ul>
     {% else %}
         <p>No Materials!</p>
     {% endif %}
@@ -14,11 +14,17 @@
     <form action="{% url "videoEdit" %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <p>{{ form.non_field_errors }}</p>
-        <p>{{ form.adMaterialfile.label_tag }} {{ form.adMaterialfile.help_text }}</p>
+        <p>{{ form.material.label_tag }} {{ form.material.help_text }}</p>
         <p>
-            {{ form.adMaterialfile.errors }}
-            {{ form.adMaterialfile }}
+            {{ form.material.errors }}
+            {{ form.material }}
         </p>
         <p><input type="submit" value="Upload" /></p>
     </form>
+
+    <video width="400" controls>
+        <source src='media/videoMaterial/TextEffects.mp4' type="video/mp4" autoplay>
+        Your browser does not support HTML5 video.
+    </video>
+    
 {% endblock %}

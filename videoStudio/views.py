@@ -6,24 +6,25 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from .forms import AdMaterialForm
-from .models import AdMaterialFile
+from .models import AdMaterialFile, Item
 
 def index(request):
     return render(request, 'videoStudio/index.html', {})
 
 def items(request):
-    return render(request, 'videoStudio/items.html', {})
 
-#def videoEdit(request):
-#    return render(request, 'videoStudio/videoEdit.html', {})
+    items = Item.objects.all()
+    
+    return render(request, 'videoStudio/items.html', {'items':items})
 
 # Handle file upload
 def videoEdit(request):
     if request.method == 'POST':
         form = AdMaterialForm(request.POST, request.FILES)
         if form.is_valid():
-            newmat = AdMaterialFile(adMaterialfile=request.FILES['adMaterialfile'])
+            newmat = AdMaterialFile(material=request.FILES['material'])
             newmat.save()
+            print '******* saved *******'
 
             # Redirect to the document list after POST
             return HttpResponseRedirect(reverse('videoEdit'))
