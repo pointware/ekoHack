@@ -1,0 +1,12 @@
+.start_make_ad_button {
+    padding : 30px;
+    border-radius: 6px;
+    background-color: #FCA205;
+    font-size: 25px;
+    color: white;
+    width: 50%;
+    cursor: pointer;
+    transition: all 0.5s;
+    margin-top: 30%;
+    margin-left: 50%;
+}
