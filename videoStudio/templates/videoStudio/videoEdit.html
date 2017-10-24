@@ -1,0 +1,24 @@
+{% extends 'videoStudio/base.html' %}
+
+{% block content %}
+
+    <!-- List of uploaded documents -->
+    {% if videoMaterial %}
+    <ul>
+        <li><a href="">{{ videoMaterial.count }}</a></li>
+    </ul>
+    {% else %}
+        <p>No Materials!</p>
+    {% endif %}
+
+    <form action="{% url "videoEdit" %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>{{ form.non_field_errors }}</p>
+        <p>{{ form.adMaterialfile.label_tag }} {{ form.adMaterialfile.help_text }}</p>
+        <p>
+            {{ form.adMaterialfile.errors }}
+            {{ form.adMaterialfile }}
+        </p>
+        <p><input type="submit" value="Upload" /></p>
+    </form>
+{% endblock %}
