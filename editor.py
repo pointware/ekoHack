@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import numpy as np
+import time
 from moviepy.editor import *
 from moviepy.video.tools.segmenting import findObjects
 
@@ -62,4 +63,5 @@ clips = [ CompositeVideoClip( moveLetters(letters,funcpos),
 # WE CONCATENATE EVERYTHING AND WRITE TO A FILE
 
 final_clip = concatenate_videoclips(clips)
-final_clip.write_videofile('./TextEffects.mp4',fps=30,codec='mpeg4')
+fileName = time.strftime('%H%M%S')+'.mp4' 
+final_clip.write_videofile(fileName,fps=30,codec='mpeg4')
