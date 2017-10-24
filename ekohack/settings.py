@@ -25,7 +25,7 @@ SECRET_KEY = '@$bbe0wge8idk)kc(++l1o$n(z#5i1sew-(a5!(6h3^dv5##w5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','hkta31-u1.koreacentral.cloudapp.azure.com']
 
 
 # Application definition
