@@ -70,6 +70,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
+                <form action="{% url "videoEdit" %}" method="POST" class="post-form">{% csrf_token %}
+                    <button type="submit" class"save btn btn-default">광고 만들기</button>
+                </form>
                 {% if result %}    
                     <video name="test" width="400" height="360" controls preload>
                         <source src= {{ result.material.url }}></source>
@@ -78,6 +81,8 @@
             </div>
         </div>
     </div>
+
+
 <!--
     <form action="{% url "videoEdit" %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}

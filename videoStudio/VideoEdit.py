@@ -14,10 +14,10 @@ class VideoTemplate:
     fps = 25
     logovideo = './media/logo.mp4'
 
-    step1_audio = './media/startbg.mp3'
+    step1_audio = 'videoStudio/media/startbg.mp3'
     step2_audio = ''
     step3_audio = ''
-    step4_audio = './media/step4-bg.mp3'
+    step4_audio = 'videoStudio/media/step4-bg.mp3'
     step5_audio = ''
 
     def CountDown(self, text, fps=20):

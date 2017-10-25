@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
             <div class="card" style="width: 50rem;">
-                {% if video %}
+                {% if video2 %}
                     <video name="test" width="400" height="360" controls preload>
-                        <source src= {{ video.material.url }}></source>
+                        <source src= {{ video2.material.url }}></source>
                     </video>
                 {% else %}
                     아래의 양식을 채워서 제출해주세요
@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Step #2</h4>
                     <p class="card-text">영상 1개와 Text 1개를 입력하세요</p>
-                    <form action="{% url "videoEditStep2" %}" method="POST" class="post-form">{% csrf_token %}
+                    <form action="{% url "videoEditStep2" %}" method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
                         {{ form_step2.as_p }}
                         <button type="submit" class="save btn btn-default">제출</button>
                     </form>

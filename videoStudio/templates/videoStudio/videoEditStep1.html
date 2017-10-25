@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
             <div class="card" style="width: 50rem;">
-                {% if video %}
-                    <video name="test" width="400" height="360" controls preload>
-                        <source src= {{ video.material.url }}></source>
+                {% if video1 %}
+                    <video name="test" width="400" height="360" controls autoplay>
+                        <source src= {{ video1.material.url }}></source>
                     </video>
                 {% else %}
                     아래의 양식을 채워서 제출해주세요
