@@ -22,3 +22,20 @@ class Item(models.Model):
 
     def add_item(self):
         self.save()
+
+
+
+class DashboardData(models.Model):
+    adName = models.CharField(max_length=200)
+    channel = models.CharField(max_length=200)
+    loginId = models.CharField(max_length=200)
+    siteType = models.CharField(max_length=200)
+    category1 = models.CharField(max_length=200)
+    category2 = models.CharField(max_length=200)
+    category3 = models.CharField(max_length=200)
+    insDate = models.DateTimeField()
+    age = models.IntegerField()
+    sex = models.CharField(max_length=200)
+    buyYN = models.CharField(max_length=200)
+
+    

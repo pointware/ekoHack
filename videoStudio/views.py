@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from .forms import AdMaterialForm
-from .models import AdMaterialFile, Item
+from .models import AdMaterialFile, Item, DashboardData
 
 def index(request):
     return render(request, 'videoStudio/index.html', {})
@@ -17,8 +17,11 @@ def items(request):
     
     return render(request, 'videoStudio/items.html', {'items':items})
 
+# dashboard mapping
 def dashboard(request):
     
+    # graph1 = DashboardData.objects.filter()
+
     return render(request, 'videoStudio/dashboard.html', {})
 
 # Handle file upload

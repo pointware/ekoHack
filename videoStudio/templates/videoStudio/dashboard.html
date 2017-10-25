@@ -1,5 +1,191 @@
 {% extends 'videoStudio/base.html' %}
 
 {% block content %}
-진표님 일하세여
+  <style>
+    table, th, td {
+      border: 1px solid black;
+    }
+  </style>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+
+    // 구매자 관심 카테고리
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawBarChart);
+
+    function drawBarChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "명", { role: "style" } ],
+        ["리빙", 152, "red"],
+        ["건강용품", 140, "yellow"],
+        ["리빙", 132, "gold"],
+        ["뷰티", 118, "blud"],
+        ["의류", 98, "orange"],
+        ["가전", 71, "violet"],
+        ["디지털", 46, "olive"],
+        ["도서", 29, "pink"],
+        ["스포츠", 17, "green"],
+        ["완구", 9, "purple"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "구매자 관심 카테고리",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+       var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+       chart.draw(view, options);
+     }
+
+    // 월간 판매량 추이
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawCurveChart);
+
+    function drawCurveChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Month', 'Sales', 'Amounts'],
+            ['1월',  1000,      400],
+            ['2월',  1170,      460],
+            ['3월',  1059,       1120],
+            ['4월',  1030,      540],
+            ['5월',  1030,      1254],
+            ['6월',  1030,      1984],
+            ['7월',  1050,      689],
+            ['8월',  1030,      243],
+            ['9월',  1320,      88],
+            ['10월',  1030,      2],
+            ['11월',  1130,      329],
+            ['12월',  980,      543]
+        ]);
+
+        var options = {
+        title: '월간 판매량 추이',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+
+    // 나이별 유입량 (남자)
+    google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawPieChart1);
+
+      function drawPieChart1() {
+        var data = google.visualization.arrayToDataTable([
+          ['Age', 'Num'],
+          ['10', 31],
+          ['20', 43],
+          ['30', 21],
+          ['40', 18],
+          ['50+', 22]
+        ]);
+
+        var options = {
+          title: '나이별 유입량 (남자)',
+          is3D: true
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d_1'));
+        chart.draw(data, options);
+      }
+      
+    //나이별 유입량 (여자)
+    google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawPieChart2);
+      function drawPieChart2() {
+        var data = google.visualization.arrayToDataTable([
+          ['Age', 'Num'],
+          ['10', 11],
+          ['20', 2],
+          ['30', 2],
+          ['40', 2],
+          ['50+', 7]
+        ]);
+
+        var options = {
+          title: '나이별 유입량 (여자)',
+          is3D: true
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d_2'));
+        chart.draw(data, options);
+      }
+    
+    // 유입 채널  
+    google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'Facebook', 'Youtube', 'Twitter', 'Instagram', 'Naver'],
+          ['1월',  1000, 400, 345, 223, 1523],
+          ['2월',  1170, 460, 553, 123, 533],
+          ['3월',  660, 1120, 1234, 142, 754],
+          ['4월',  1030, 540, 112, 523, 675],
+          ['5월',  1030, 540, 233, 634, 987],
+          ['6월',  1142, 1540, 423, 412, 543],
+          ['7월',  1234, 2540, 2234, 112, 355],
+          ['8월',  1030, 540, 124, 556, 2334],
+          ['9월',  1030, 2540, 123, 566, 345],
+          ['10월',  1030, 540, 222, 3534, 234],
+          ['11월',  1030, 3540, 124, 55, 1234],
+          ['12월',  1030, 1233, 540, 1231, 5655]
+        ]);
+
+        var options = {
+          title: '유입채널',
+          hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+
+  </script>
+
+  <br><br><br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <p id="barchart_values"></p>
+        </div>
+        <div class="col-sm-6">
+            <p id="curve_chart"></p>
+        </div>    
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <p id="piechart_3d_1"></p>
+        </div>
+        <div class="col-sm-6">
+            <p id="piechart_3d_2"></p>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <p id="chart_div"></p>
+        </div>        
+    </div>
+</div>
 {% endblock %}
