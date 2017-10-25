@@ -18,7 +18,7 @@ def items(request):
     return render(request, 'videoStudio/items.html', {'items':items})
 
 def dashboard(request):
-    
+
     return render(request, 'videoStudio/dashboard.html', {})
 
 # Handle file upload
@@ -28,10 +28,10 @@ def videoEdit(request):
         if form.is_valid():
             newmat = AdMaterialFile(material=request.FILES['material'])
             newmat.save()
-            print '******* saved *******'
 
             # Redirect to the document list after POST
             return HttpResponseRedirect(reverse('videoEdit'))
+            print '******* saved *******'
     else:
         form = AdMaterialForm()  # A empty, unbound form
 
