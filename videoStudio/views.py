@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 
 from .models import AdMaterialFile, Item, DashboardData
 from .forms import AdMaterialForm, videoEditStep1Form, videoEditStep2Form, videoEditStep3Form, videoEditStep4Form, videoEditStep5Form
+from VideoEdit import * 
 
 def index(request):
     return render(request, 'videoStudio/index.html', {})
@@ -59,7 +60,12 @@ def videoEdit(request):
 def videoEditStep1(request):
 
     if request.method == "POST":
+        template = VideoTemplate()
         form = videoEditStep1Form(request.POST)
+
+        param = [ f for f in form]
+
+        template.step1(param, 'media/videoMaterial/step1_video.mp4')
         video = AdMaterialFile()
     else:
         form = videoEditStep1Form()
