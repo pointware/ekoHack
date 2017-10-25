@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="card" style="width: 50rem;">
+                {% if video %}
+                    <video name="test" width="400" height="360" controls preload>
+                        <source src= {{ video.material.url }}></source>
+                    </video>
+                {% else %}
+                    아래의 양식을 채워서 제출해주세요
+                {% endif %}
+                <div class="card-body">
+                    <h4 class="card-title">Step #3</h4>
+                    <p class="card-text">이미지 1개와 Text 1개를 입력하세요</p>
+                    <form action="{% url "videoEditStep3" %}" method="POST" class="post-form">{% csrf_token %}
+                        {{ form_step3.as_p }}
+                        <button type="submit" class="save btn btn-default">제출</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
