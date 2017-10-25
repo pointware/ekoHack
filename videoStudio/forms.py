@@ -41,7 +41,17 @@ class videoEditStep4Form(forms.Form):
     )
 
 class videoEditStep5Form(forms.Form):
-    text = forms.CharField(max_length=200)
-    image = forms.FileField(
+    
+    text1 = forms.CharField(max_length=200)
+    text2 = forms.CharField(max_length=200)
+    text3 = forms.CharField(max_length=200)
+
+    image1 = forms.FileField(
+        label = 'Select a image'
+    )
+    image2 = forms.FileField(
+        label = 'Select a image'
+    )
+    image3 = forms.FileField(
         label = 'Select a image'
     )
