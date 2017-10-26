@@ -71,6 +71,7 @@ class VideoTemplate:
         return concatenate_videoclips(mxingclip, method='compose')
 
     def make(self, file_name, save_name):
+        videos = [ VideoFileClip(f) for f in file_name ]
         video = concatenate_videoclips(file_name, method='compose')
         self.saveVideo(video, save_name)
         return True
