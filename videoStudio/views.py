@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from .models import AdMaterialFile, Item, DashboardData
+from .models import AdMaterialFile, Item, DashboardData, RedirectGo
 from .forms import AdMaterialForm, videoEditStep1Form, videoEditStep2Form, videoEditStep3Form, videoEditStep4Form, videoEditStep5Form
 from VideoEdit import * 
+
+import hashlib
+import time
 
 def index(request):
     return render(request, 'videoStudio/index.html', {})
@@ -24,6 +27,13 @@ def dashboard(request):
     # graph1 = DashboardData.objects.filter()
 
     return render(request, 'videoStudio/dashboard.html', {})
+
+def go(request):
+    
+    h = request.GET['q']
+    vipUrl = RedirectGo.objects.get(hashValue=h)
+
+    return redirect(vipUrl) 
 
 # Handle file upload
 def videoEdit(request):
@@ -50,10 +60,14 @@ def videoEdit(request):
         template.make(param, 'videoStudio/media/result.mp4')
         result = AdMaterialFile(material='result.mp4')
 
+        hash = makeUrl('http://item.gmarket.co.kr/Item?goodscode=642480089')
+
+        URL = 'http://hkta31-u1.koreacentral.cloudapp.azure.com/?q=' + hash
+
         return render(
         request,
         'videoStudio/videoEdit.html',
-        {'result':result }
+        {'result':result, 'URL':URL }
     )
     else:
         form_step1 = videoEditStep1Form()
@@ -241,3 +255,14 @@ def videoEditStep5(request):
         form = videoEditStep5Form()
 
     return render(request, 'videoStudio/videoEdit.html', {})
+
+def makeUrl(gmarketVipUrl):
+    masterId = 'ekoHack'
+    h = hashlib.new('ripemd160')
+    strtime = time.strftime('%Y%m%d%H%M%S')
+    h.update(strtime + masterId)
+    print h.hexdigest()
+
+    r = RedirectGo.objects.create(vipUrl=gmarketVipUrl, hashValue=h)
+
+    return r

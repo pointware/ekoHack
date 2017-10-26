@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import index, items, videoEdit, dashboard, videoEditStep1, videoEditStep2, videoEditStep3, videoEditStep4, videoEditStep5
+from .views import index, items, videoEdit, dashboard, videoEditStep1, videoEditStep2, videoEditStep3, videoEditStep4, videoEditStep5, go
 
 urlpatterns = [
     url(r'^$', index, name='index'),
@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^videoeditstep4$', videoEditStep4, name='videoEditStep4'),
     url(r'^videoeditstep5$', videoEditStep5, name='videoEditStep5'),
     url(r'^dashboard$', dashboard, name='dashboard'),
+    url(r'^go/$', go, name='go'),
 ]

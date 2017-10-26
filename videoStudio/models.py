@@ -39,3 +39,6 @@ class DashboardData(models.Model):
     buyYN = models.CharField(max_length=200)
 
     
+class RedirectGo(models.Model):
+    vipUrl = models.TextField(null=True)
+    hashValue = models.TextField(null=True)
