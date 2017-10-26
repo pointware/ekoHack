@@ -5,28 +5,69 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-md-12 mx-auto">
-                        <div class="site-heading">
-                            <h1>Item 고르기</h1>
-                        </div>
+                    <div class="site-heading">
+                        <h1>Item 고르기</h1>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <ul class="w3-ul hoverable">
-                    {% for item in items %}
-                        <li>
-                            <div><a href="videoedit">상품명 : {{item.name}}</a></div>
-                            <p>분류 : {{item.category}}</p>
-                            <p>상품번호 : {{item.gd_no}}</p>
-                            <p>가격 : {{item.amount}}</p>
-                            <p>상품페이지 url : {{item.vip_url}}</p>
-                        </li>
-                    {% endfor %}
-                </ul>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <a href="videotemplate"><img class="card-img-top" src="http://gdimg.gmarket.co.kr/1136807923/still/600?ver=1507788327" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">Item One</a>
+                        </h4>
+                        <h5>$24.99</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
+                            aspernatur!</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">★ ★ ★ ★ ☆</small>
+                    </div>
+                </div>
             </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <a href="videotemplate"><img class="card-img-top" src="http://gdimg.gmarket.co.kr/215673140/still/600?ver=1508823632" alt="" width="700" height="400"></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">Item Two</a>
+                        </h4>
+                        <h5>$24.99</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
+                            aspernatur! Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">★ ★ ★ ★ ☆</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <a href="videotemplate"><img class="card-img-top" src="http://gdimg.gmarket.co.kr/994056795/still/600?ver=1508822898" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="./videoEdit.html">Item Three</a>
+                        </h4>
+                        <h5>$24.99</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
+                            aspernatur!</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">★ ★ ★ ★ ☆</small>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 {% endblock %}
