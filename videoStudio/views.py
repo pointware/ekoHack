@@ -244,7 +244,7 @@ def videoEditStep5(request):
             print param_image_name
             print param_text
 
-            template.step5(param_text1, param_image_name, 'videoStudio/media/videoMaterial/step5_video.mp4')
+            template.step5(param_text, param_image_name, 'videoStudio/media/videoMaterial/step5_video.mp4')
             video5 = AdMaterialFile(material='videoMaterial/step5_video.mp4')
             video4 = AdMaterialFile(material='videoMaterial/step4_video.mp4')
             video3 = AdMaterialFile(material='videoMaterial/step3_video.mp4')

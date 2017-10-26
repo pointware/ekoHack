@@ -12,7 +12,7 @@ class VideoTemplate:
     font = 'Noto-Sans-Mono-CJK-KR-Bold'
     screen = (720, 360)
     fps = 25
-    logovideo = './media/logo.mp4'
+    logovideo = 'videoStudio/media/logo3.mp4'
 
     step1_audio = 'videoStudio/media/startbg.mp3'
     step2_audio = ''
@@ -71,7 +71,9 @@ class VideoTemplate:
         return concatenate_videoclips(mxingclip, method='compose')
 
     def make(self, file_name, save_name):
+	logo = VideoFileClip(self.logovideo).resize(height=self.screen[1])
         videos = [ VideoFileClip(f) for f in file_name ]
+	videos.append(logo)
         video = concatenate_videoclips(videos, method='compose')
         self.saveVideo(video, save_name)
         return True
@@ -198,13 +200,16 @@ class VideoTemplate:
             ImageClip(x).set_duration(gap).set_position('center').set_start(i * gap).resize(height=self.screen[1])
             for i,x in enumerate(images)
         ]
-        step5_text_video = TextClip(text.encode('utf-8'), fontsize=20, color='white',
-                                    font=self.font) \
-            .set_duration(3).set_position("center")
+	step5_text_videos = [
+		TextClip(t.encode('utf-8'), fontsize=25, color='white', font=self.font).set_duration(gap).set_position(("center","bottom")).set_start(i * gap) for i,t in enumerate(text)	
+	]
+        #step5_text_video = TextClip(text.encode('utf-8'), fontsize=20, color='white',
+        #                            font=self.font) \
+        #    .set_duration(3).set_position(("center","botton"))
 
 
 
-        step5_video = CompositeVideoClip([step5_video] + clip_images+ [step5_text_video]).fadein(1)
+        step5_video = CompositeVideoClip([step5_video] + clip_images+ step5_text_videos).fadein(1)
 
         step5_video.mask.get_frame = lambda t: circle(screensize=(step5_video.w, step5_video.h),
                                                center=(step5_video.w / 2, step5_video.h / 4),
