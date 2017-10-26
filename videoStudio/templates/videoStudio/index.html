@@ -1,31 +1,15 @@
-{% extends 'videoStudio/base.html' %}
-
-{% block content %}
-    <style>
-        input.transparent-input{
-           background-color:rgba(0,0,0,0) !important;
-        }
-    </style>
-
-    <!-- Page Header -->
-    <header class="masthead" style="background-image: url('media/videoMaterial/img/home-bg.jpg')">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-md-12 mx-auto">
-                    <div class="site-heading">
-                        <h1>Ebay Video Center</h1>
-                        <span class="subheading">쉽게 만들고, 배포하세요</span>
-                    </div>
-
-                    <div class="container">
+    <body>
+    <div class="container">
                         <div class="row justify-content-center">
                             <div class="form-group">
-                                <span class="subheading">EMS PLUS 마스터 ID 로그인</span>
+                                <span class="subheading">
+                                    <img src="https://pics.esmplus.com/front/common/logo2_plus.jpg" alt="e-bay korea">
+                                </span>
                             </div>
                         </div>
                         <div class="row justify-content-center">
                             <div class="form-group">
-                                <input type="text" class="form-control transparent-input col-lg-14" id="usr" placeholder="ID">
+                                <input type="text" class="form-control transparent-input col-lg-14" id="usr" placeholder="ESM master ID">
                             </div>
                         </div>
                         <div class="row justify-content-center">
@@ -40,9 +24,5 @@
                                 </div>
                             </div>
                     </div>
-
-                </div>
-            </div>
-        </div>
-    </header>
+    </body>
 {% endblock %}
