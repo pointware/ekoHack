@@ -72,7 +72,7 @@ class VideoTemplate:
 
     def make(self, file_name, save_name):
         videos = [ VideoFileClip(f) for f in file_name ]
-        video = concatenate_videoclips(file_name, method='compose')
+        video = concatenate_videoclips(videos, method='compose')
         self.saveVideo(video, save_name)
         return True
 
