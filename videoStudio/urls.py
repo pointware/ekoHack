@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import index, items, videoEdit, dashboard, videoEditStep1, videoEditStep2, videoEditStep3, videoEditStep4, videoEditStep5
+from .views import index, items, videoEdit, dashboard, videoEditStep1, videoEditStep2, videoEditStep3, videoEditStep4, videoEditStep5, videoTemplate
 
 urlpatterns = [
     url(r'^$', index, name='index'),
