@@ -9,7 +9,7 @@ class VideoTemplate:
     step3_duration = 3
     step4_duration = 3
     step5_duration = 3
-    font = 'NanumBarunGothic-Bold'
+    font = 'Noto-Sans-Mono-CJK-KR-Bold'
     screen = (720, 360)
     fps = 25
     logovideo = './media/logo.mp4'
@@ -82,7 +82,7 @@ class VideoTemplate:
     # text array
     def step1(self, text, save_name):
 
-        txtClip = TextClip('asdfasdfasdf'.encode('utf-8'), color='white', font=self.font,
+        txtClip = TextClip(text[8:9][0].encode('utf-8'), color='white', font=self.font,
                            kerning=5, fontsize=100)
         cvc = CompositeVideoClip([txtClip.set_pos('center')],
                                  size=self.screen)
@@ -127,7 +127,7 @@ class VideoTemplate:
 
         final_clip = concatenate_videoclips(clips)
 
-        video = self.twinkle(text[:9], frame_duration=0.4)  # CompositeVideoClip([step1, step1_text_video]).fadein(1)
+        video = self.twinkle(text[:8], frame_duration=0.4)  # CompositeVideoClip([step1, step1_text_video]).fadein(1)
         video2 = self.twinkle(text[9:12], frame_duration=0.4)  # CompositeVideoClip([step1, step1_text_video]).fadein(1)
         countdown = self.CountDown(text[12:])
 
