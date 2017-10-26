@@ -56,9 +56,9 @@ def videoEdit(request):
         video5 = AdMaterialFile(material='videoMaterial/step5_video.mp4')
 
         param = ['videoStudio' + video1.material.url, 'videoStudio' + video2.material.url, 'videoStudio' + video3.material.url, 'videoStudio' + video4.material.url, 'videoStudio' + video5.material.url]
-
-        template.make(param, 'videoStudio/media/result.mp4')
-        result = AdMaterialFile(material='result.mp4')
+        timestr = time.strftime('%H%M%S.mp4')
+        template.make(param, 'videoStudio/media/result'+timestr)
+        result = AdMaterialFile(material='result'+timestr)
 
         hash = makeUrl('http://item.gmarket.co.kr/Item?goodscode=642480089')
 
