@@ -69,6 +69,9 @@ def videoEdit(request):
         {'form_step1': form_step1, 'form_step2': form_step2, 'form_step3': form_step3, 'form_step4': form_step4, 'form_step5': form_step5}
     )
 
+def videotemplate(request):
+    return render(request, 'videoStudio/videoTemplate.html', {})
+
 def videoEditStep1(request):
 
     if request.method == "POST":
