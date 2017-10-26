@@ -79,7 +79,7 @@ def videoEdit(request):
     return render(
         request,
         'videoStudio/videoEdit.html',
-        {'form_step1': form_step1, 'form_step2': form_step2, 'form_step3': form_step3, 'form_step4': form_step4, 'form_step5': form_step5}
+        {'div': 1, 'form_step1': form_step1, 'form_step2': form_step2, 'form_step3': form_step3, 'form_step4': form_step4, 'form_step5': form_step5}
     )
 
 def videoTemplate(request):
@@ -119,7 +119,7 @@ def videoEditStep1(request):
     else:
         form = videoEditStep1Form()
 
-    return render(request, 'videoStudio/videoEdit.html', {'form_step1': form_step1, 'form_step2': form_step2, 'form_step3': form_step3, 'form_step4': form_step4, 'form_step5': form_step5, 'video1':video})
+    return render(request, 'videoStudio/videoEdit.html', {'div':1, 'form_step1': form_step1, 'form_step2': form_step2, 'form_step3': form_step3, 'form_step4': form_step4, 'form_step5': form_step5, 'video1':video})
 
 def videoEditStep2(request):
 
@@ -142,7 +142,7 @@ def videoEditStep2(request):
             video2 = AdMaterialFile(material='videoMaterial/step2_video.mp4')
             video1 = AdMaterialFile(material='videoMaterial/step1_video.mp4')
 
-            return render(request, 'videoStudio/videoEdit.html', {'form_step1': form_step1, 'form_step2': form_step2, 'form_step3': form_step3, 'form_step4': form_step4, 'form_step5': form_step5, 'video1':video1, 'video2':video2})
+            return render(request, 'videoStudio/videoEdit.html', {'div':2, 'form_step1': form_step1, 'form_step2': form_step2, 'form_step3': form_step3, 'form_step4': form_step4, 'form_step5': form_step5, 'video1':video1, 'video2':video2})
 
     else:
         form = videoEditStep2Form()
@@ -174,7 +174,7 @@ def videoEditStep3(request):
             video2 = AdMaterialFile(material='videoMaterial/step2_video.mp4')
             video1 = AdMaterialFile(material='videoMaterial/step1_video.mp4')
 
-            return render(request, 'videoStudio/videoEdit.html', {'form_step1': form_step1, 'form_step2': form_step2, 'form_step3': form_step3, 'form_step4': form_step4, 'form_step5': form_step5, 'video1':video1, 'video2':video2, 'video3':video3})
+            return render(request, 'videoStudio/videoEdit.html', {'div':3, 'form_step1': form_step1, 'form_step2': form_step2, 'form_step3': form_step3, 'form_step4': form_step4, 'form_step5': form_step5, 'video1':video1, 'video2':video2, 'video3':video3})
 
     else:
         form = videoEditStep3Form()
@@ -207,7 +207,7 @@ def videoEditStep4(request):
             video2 = AdMaterialFile(material='videoMaterial/step2_video.mp4')
             video1 = AdMaterialFile(material='videoMaterial/step1_video.mp4')
 
-            return render(request, 'videoStudio/videoEdit.html', {'form_step1': form_step1, 'form_step2': form_step2, 'form_step3': form_step3, 'form_step4': form_step4, 'form_step5': form_step5, 'video1':video1, 'video2':video2, 'video3':video3, 'video4':video4})
+            return render(request, 'videoStudio/videoEdit.html', {'div':4,'form_step1': form_step1, 'form_step2': form_step2, 'form_step3': form_step3, 'form_step4': form_step4, 'form_step5': form_step5, 'video1':video1, 'video2':video2, 'video3':video3, 'video4':video4})
 
     else:
         form = videoEditStep4Form()
@@ -251,7 +251,7 @@ def videoEditStep5(request):
             video2 = AdMaterialFile(material='videoMaterial/step2_video.mp4')
             video1 = AdMaterialFile(material='videoMaterial/step1_video.mp4')
 
-            return render(request, 'videoStudio/videoEdit.html', {'form_step1': form_step1, 'form_step2': form_step2, 'form_step3': form_step3, 'form_step4': form_step4, 'form_step5': form_step5, 'video1':video1, 'video2':video2, 'video3':video3, 'video4':video4, 'video5':video5})
+            return render(request, 'videoStudio/videoEdit.html', {'div':5,'form_step1': form_step1, 'form_step2': form_step2, 'form_step3': form_step3, 'form_step4': form_step4, 'form_step5': form_step5, 'video1':video1, 'video2':video2, 'video3':video3, 'video4':video4, 'video5':video5})
 
     else:
         form = videoEditStep5Form()

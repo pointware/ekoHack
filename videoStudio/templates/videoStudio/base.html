@@ -1,119 +1,150 @@
 {% load staticfiles %}
 
 <html>
-    <head>
-        <script>
-        </script>
+<head>
+    <script>
+    </script>
 
-        <!-- Video Studio CSS -->
-        <link href="{% static 'css/videoStudio.css' %} " rel="stylesheet">
+    <!-- Video Studio CSS -->
+    <link href="{% static 'css/videoStudio.css' %} " rel="stylesheet">
 
-        <!-- Bootstrap core CSS -->
-        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %} " rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %} " rel="stylesheet">
 
-        <!-- W3 CSS -->
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- W3 CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-        <!-- Custom fonts for this template -->
-        <link href='static/vendor/font-awesome/css/font-awesome.min.css' rel="stylesheet" type="text/css">
-        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Custom fonts for this template -->
+    <link href='static/vendor/font-awesome/css/font-awesome.min.css' rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
 
-        <!-- Custom styles for this template -->
-        <link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">    
-        <style>
-            @media (min-width: 576px) {
-                .card-columns {
-                    column-count: 2;
-                }
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
+    <style>
+        @media (min-width: 576px) {
+            .card-columns {
+                column-count: 2;
             }
-	    a img:focus, a img:hover {
-	    	cursor: pointer;
-		}
-        </style>
-        <title> Ebay Video Center </title>
-    </head>
-    <body>
-        <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-        <div class="container">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-            <i class="fa fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="items">ADs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="dashboard">Dashboard</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        }
 
-    <div class="content-menu">
-        <div class="row">
-            <div class="col">
-                {% block content %}
-                {% endblock %}
-            </div>
+        a img:focus, a img:hover {
+            cursor: pointer;
+        }
+
+        .loader {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 9vh;
+            left: 45vw;
+            z-index: 1;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <title> Ebay Video Center </title>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+            Menu
+            <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="items">ADs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard">Dashboard</a>
+                </li>
+            </ul>
         </div>
     </div>
+</nav>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
+
+<div class="content-menu">
+    <div class="row">
+        <div class="col">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <ul class="list-inline text-center">
-                <li class="list-inline-item">
-                    <a href="#">
+                    <li class="list-inline-item">
+                        <a href="#">
                     <span class="fa-stack fa-lg">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
                     </span>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="#">
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
                     <span class="fa-stack fa-lg">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
                     </span>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="#">
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
                     <span class="fa-stack fa-lg">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-github fa-stack-1x fa-inverse"></i>
                     </span>
-                    </a>
-                </li>
+                        </a>
+                    </li>
                 </ul>
                 <p class="copyright text-muted">Copyright &copy; eBayKorea 2017</p>
             </div>
-            </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <!-- HTML5 js source -->
-    <script src="http://api.html5media.info/1.1.5/html5media.min.js"></script>
+<!-- HTML5 js source -->
+<script src="http://api.html5media.info/1.1.5/html5media.min.js"></script>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src='static/vendor/jquery/jquery.min.js'></script>
-    <script src='static/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
+<!-- Bootstrap core JavaScript -->
+<script src='static/vendor/jquery/jquery.min.js'></script>
+<script src='static/vendor/bootstrap/js/bootstrap.bundle.min.js'></script>
 
-    <!-- Custom scripts for this template -->
-    <script src="{% static 'js/clean-blog.min.js' %}"></script>
-
-    <!-- Dashboard scripts -->
-    <!-- <script src='static/js/dashboard.js'></script> -->
-    </body>
+<!-- Custom scripts for this template -->
+<script src="{% static 'js/clean-blog.min.js' %}"></script>
+{% block script %}
+{% endblock %}
+<!-- Dashboard scripts -->
+<!-- <script src='static/js/dashboard.js'></script> -->
+</body>
 </html>

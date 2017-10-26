@@ -71,15 +71,15 @@ class VideoTemplate:
         return concatenate_videoclips(mxingclip, method='compose')
 
     def make(self, file_name, save_name):
-	logo = VideoFileClip(self.logovideo).resize(height=self.screen[1])
-        videos = [ VideoFileClip(f) for f in file_name ]
-	videos.append(logo)
+        logo = VideoFileClip(self.logovideo).resize(height=self.screen[1])
+        videos = [VideoFileClip(f) for f in file_name]
+        videos.append(logo)
         video = concatenate_videoclips(videos, method='compose')
         self.saveVideo(video, save_name)
         return True
 
     def saveVideo(self, clip, file_name):
-        clip.write_videofile(file_name, codec='libx264', threads=4, fps=self.fps)
+        clip.write_videofile(file_name, codec='libx264', threads=4, fps=self.fps, write_logfile = True)
 
     # text array
     def step1(self, text, save_name):
@@ -154,9 +154,7 @@ class VideoTemplate:
 
         background = background.set_opacity(0.4)
 
-
         step2_video = CompositeVideoClip([step2_video, background, step2_text_video]).fadein(1).fadeout(1)
-
 
         self.saveVideo(step2_video, save_name)
 
@@ -166,26 +164,25 @@ class VideoTemplate:
         white = np.zeros([self.screen[1], self.screen[0], 1], dtype=np.uint8)
         white.fill(255)
         white = ImageClip(white).set_duration(self.step3_duration)
-        img = ImageClip(image_name).set_duration(self.step3_duration).resize(0.5).set_pos((150,'center'))
+        img = ImageClip(image_name).set_duration(self.step3_duration).resize(0.5).set_pos((150, 'center'))
         step3_text_video = TextClip(text.encode('utf-8'), fontsize=100, color='black', size=self.screen,
                                     font=self.font) \
             .set_duration(self.step3_duration).set_pos((100, 'center'))
 
-        clip= CompositeVideoClip([white,img, step3_text_video])
+        clip = CompositeVideoClip([white, img, step3_text_video])
         self.saveVideo(clip, save_name)
 
     def step4(self, text, video_name, save_name):
         step4_video = VideoFileClip(video_name)
         step4_video = step4_video.resize(height=self.screen[1])
-        step4_video.audio = step4_video.audio.subclip(0,2.838)
-        audio = AudioFileClip(self.step4_audio).subclip(2, step4_video.end-2.838+2);
+        step4_video.audio = step4_video.audio.subclip(0, 2.838)
+        audio = AudioFileClip(self.step4_audio).subclip(2, step4_video.end - 2.838 + 2);
         step4_video.audio = concatenate_audioclips([step4_video.audio, audio])
         step4_text_video = TextClip(text.encode('utf-8'), fontsize=20, color='white',
                                     font=self.font) \
             .set_duration(step4_video.duration).set_pos(('center', 'bottom'))
 
         step4_video = CompositeVideoClip([step4_video, step4_text_video]).fadein(1).fadeout(1)
-
 
         self.saveVideo(step4_video, save_name)
 
@@ -198,25 +195,25 @@ class VideoTemplate:
         step5_video = ImageClip(blackimage).set_duration(self.step5_duration)
         clip_images = [
             ImageClip(x).set_duration(gap).set_position('center').set_start(i * gap).resize(height=self.screen[1])
-            for i,x in enumerate(images)
+            for i, x in enumerate(images)
         ]
-	step5_text_videos = [
-		TextClip(t.encode('utf-8'), fontsize=25, color='white', font=self.font).set_duration(gap).set_position(("center","bottom")).set_start(i * gap) for i,t in enumerate(text)	
-	]
-        #step5_text_video = TextClip(text.encode('utf-8'), fontsize=20, color='white',
+        step5_text_videos = [
+            TextClip(t.encode('utf-8'), fontsize=25, color='white', font=self.font).set_duration(gap).set_position(
+                ("center", "bottom")).set_start(i * gap) for i, t in enumerate(text)
+        ]
+        # step5_text_video = TextClip(text.encode('utf-8'), fontsize=20, color='white',
         #                            font=self.font) \
         #    .set_duration(3).set_position(("center","botton"))
 
 
 
-        step5_video = CompositeVideoClip([step5_video] + clip_images+ step5_text_videos).fadein(1)
+        step5_video = CompositeVideoClip([step5_video] + clip_images + step5_text_videos).fadein(1)
 
         step5_video.mask.get_frame = lambda t: circle(screensize=(step5_video.w, step5_video.h),
-                                               center=(step5_video.w / 2, step5_video.h / 4),
-                                               radius=max(0, int(500 - 50 * (t+2) * 2)),
-                                               col1=1, col2=0, blur=4)
+                                                      center=(step5_video.w / 2, step5_video.h / 4),
+                                                      radius=max(0, int(500 - 50 * (t + 2) * 2)),
+                                                      col1=1, col2=0, blur=4)
 
         self.saveVideo(step5_video, save_name)
 
         return True
-
