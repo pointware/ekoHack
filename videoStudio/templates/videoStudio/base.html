@@ -21,7 +21,16 @@
 
         <!-- Custom styles for this template -->
         <link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">    
-
+        <style>
+            @media (min-width: 576px) {
+                .card-columns {
+                    column-count: 2;
+                }
+            }
+	    a img:focus, a img:hover {
+	    	cursor: pointer;
+		}
+        </style>
         <title> Ebay Video Center </title>
     </head>
     <body>
