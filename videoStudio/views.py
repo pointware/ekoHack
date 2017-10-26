@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from .models import AdMaterialFile, Item, DashboardData, RedirectGo
-from .forms import AdMaterialForm, videoEditStep1Form, videoEditStep2Form, videoEditStep3Form, videoEditStep4Form, videoEditStep5Form
+from .forms import AdMaterialForm, videoEditStep1Form, videoEditStep2Form, videoEditStep3Form, videoEditStep4Form, videoEditStep5Form, finalMovieSelectForm
 from VideoEdit import * 
 
 import hashlib
@@ -62,7 +62,7 @@ def videoEdit(request):
 
         hash = makeUrl('http://item.gmarket.co.kr/Item?goodscode=642480089')
 
-        URL = 'http://hkta31-u1.koreacentral.cloudapp.azure.com/?q=' + hash
+        URL = 'http://hkta31-u1.koreacentral.cloudapp.azure.com/?q=' + str(hash)
 
         return render(
         request,
@@ -75,7 +75,6 @@ def videoEdit(request):
         form_step3 = videoEditStep3Form()
         form_step4 = videoEditStep4Form()
         form_step5 = videoEditStep5Form()
-
     # Render list page with the documents and the form
     return render(
         request,
@@ -259,6 +258,9 @@ def videoEditStep5(request):
 
     return render(request, 'videoStudio/videoEdit.html', {})
 
+def videoEditStep6(request):
+    return render(request, 'videoStudio/videoEdit.html', {})
+
 def makeUrl(gmarketVipUrl):
     masterId = 'ekoHack'
     h = hashlib.new('ripemd160')
@@ -266,6 +268,6 @@ def makeUrl(gmarketVipUrl):
     h.update(strtime + masterId)
     print h.hexdigest()
 
-    r = RedirectGo.objects.create(vipUrl=gmarketVipUrl, hashValue=h)
+    r = RedirectGo.objects.create(vipUrl=gmarketVipUrl, hashValue=h.hexdigest())
 
-    return r
+    return h.hexdigest()

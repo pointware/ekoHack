@@ -55,3 +55,9 @@ class videoEditStep5Form(forms.Form):
     image3 = forms.FileField(
         label = 'Select a image'
     )
+
+seolhyun = ['media/videoMaterial/logo.mp4', 'media/videoMaterial/logo2.mp4', 'media/videoMaterial/logo3.mp4']
+
+class finalMovieSelectForm(forms.Form):
+
+    choice = forms.ChoiceField(choices= seolhyun, widget=forms.RadioSelect())
